@@ -23,7 +23,7 @@ platform :ios do
       timeout: 3600
     )
 
-    install_missing_wwdr_certificates(
+    FastlaneCore::CertChecker.install_missing_wwdr_certificates(
         keychain_name: keychain_name,
         keychain_password: keychain_password,
         log_output: true
