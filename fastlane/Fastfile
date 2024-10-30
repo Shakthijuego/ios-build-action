@@ -23,11 +23,18 @@ platform :ios do
       timeout: 3600
     )
 
-    FastlaneCore::CertChecker.install_missing_wwdr_certificates(
+   import_certificate(
+        certificate_path:
+          if !ENV['WWDR_CERT_PATH'].empty?
+            ENV['WWDR_CERT_PATH']
+          else
+            'ios-build-key.p12'
+          end,
+        certificate_password: "",
         keychain_name: keychain_name,
         keychain_password: keychain_password,
         log_output: true
-    )
+      )
     if @is_split_cer
       import_certificate(
         certificate_path:
@@ -289,6 +296,16 @@ platform :ios do
         File.write('../ios-build.p12', Base64.decode64(ENV['P12_BASE64']))
       end
     end
+
+
+    if ENV['WWDR_CERT_PATH'].empty? &&
+      !ENV['WWDR_CERT_BASE64'].empty?
+     
+        filename = "wwdc.cert"
+        puts "creating ../#{filename}"
+        File.write("../#{filename}", Base64.decode64(profile))
+      end
+    else
 
     @profiles = []
     if ENV['MOBILEPROVISION_PATH'].empty?
