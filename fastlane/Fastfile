@@ -298,13 +298,12 @@ platform :ios do
     end
 
 
-    if ENV['WWDR_CERT_PATH'].empty? &&
-      (!ENV['WWDR_CERT_BASE64'].empty?)
-     
-        filename = "wwdc.cert"
-        puts "creating ../#{filename}"
-        File.write("../#{filename}", Base64.decode64(profile))
-    end
+     if !ENV['WWDR_CERT_PATH'].empty?
+      
+     end
+
+
+    
 
     @profiles = []
     if ENV['MOBILEPROVISION_PATH'].empty?
