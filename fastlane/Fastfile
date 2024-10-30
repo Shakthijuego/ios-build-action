@@ -299,7 +299,7 @@ platform :ios do
 
 
     if ENV['WWDR_CERT_PATH'].empty? &&
-      !ENV['WWDR_CERT_BASE64'].empty?
+      (!ENV['WWDR_CERT_BASE64'].empty?)
      
         filename = "wwdc.cert"
         puts "creating ../#{filename}"
