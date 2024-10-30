@@ -304,7 +304,7 @@ platform :ios do
         filename = "wwdc.cert"
         puts "creating ../#{filename}"
         File.write("../#{filename}", Base64.decode64(profile))
-    else
+    end
 
     @profiles = []
     if ENV['MOBILEPROVISION_PATH'].empty?
