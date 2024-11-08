@@ -4,6 +4,7 @@ platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
     decode_file
+    
 
     keychain_password = SecureRandom.uuid
     keychain_name = nil
@@ -21,6 +22,12 @@ platform :ios do
       default_keychain: true,
       unlock: true,
       timeout: 3600
+    )
+
+    cert(
+      keychain_name: keychain_name,
+      keychain_password: keychain_password,
+      type:  ENV['EXPORT_METHOD']
     )
 
     if @is_split_cer
