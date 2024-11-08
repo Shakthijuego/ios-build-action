@@ -24,11 +24,11 @@ platform :ios do
       timeout: 3600
     )
 
-    cert(
-      keychain_name: keychain_name,
-      keychain_password: keychain_password,
-      type:  ENV['EXPORT_METHOD']
-    )
+    # cert(
+    #   keychain_name: keychain_name,
+    #   keychain_password: keychain_password,
+    #   type:  ENV['EXPORT_METHOD']
+    # )
 
     if @is_split_cer
       import_certificate(
